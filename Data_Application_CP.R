@@ -30,7 +30,7 @@ conf_rate_2<-c() #arima without CP process
 dates<-seq(as.Date("2020-04-01"),as.Date("2023-04-01"), by="1 month")
 future_dates <- seq(as.Date("2022-07-01"), as.Date("2023-04-01"), by = "month")
 fitted_dat<-data.frame(date=future_dates)
-i
+
 colnames(merged_dat)
 for (i in 1:15){
   lm_result <- lm(merged_dat[,i]~atc1+atc2+atc3+atc4,data = merged_dat) 
@@ -75,7 +75,7 @@ for (i in 1:15){
       keep_data     = TRUE
     )
   
-  ###########################################3/25
+
   
   refit_tbl <- calibration_tbl %>%
     modeltime_refit(df)
@@ -143,8 +143,7 @@ for (i in 1:15){
     value = c(fill_data$low, rev(fill_data$hi))
   )
   
-  
-  # 그래프를 그리는 함수
+
   plot_graph <- function(data, title) {
     ggplot(data, aes(x = date)) +
       geom_line(aes(y = low, color = "Low")) +
@@ -177,7 +176,7 @@ coverage_rate<-data.frame(disease=colnames(merged_dat[,1:15]),CP=conf_rate,ARIMA
 length(conf_rate)
 length(conf_rate_2)
 
-# Melt the data frame for easy plotting
+
 coverage_rate_long <- tidyr::pivot_longer(coverage_rate, cols = c("CP", "ARIMA"), names_to = "Method", values_to = "Coverage_Rate")
 
 # Plot
